@@ -53,6 +53,8 @@ def run_code_review():
             code = file.read()
 
         review = analyze_code_with_groq(code, file_path)
+        if os.path.exists(file_path) == False:
+            os.mkdir("./output")
         output_file = f"./output/{os.path.basename(file_path)}_review.md"
         with open(output_file, 'w', encoding='utf-8') as md_file:
             md_file.write(f"# Code Review for {file_path}\n\n")
@@ -64,7 +66,6 @@ def run_code_review():
         del code
         del review
         gc.collect()
-        print(f"Memory cleaned after processing")
         print("Finished processing file:", file_path)
         print("--------------------------------------------------")
 
