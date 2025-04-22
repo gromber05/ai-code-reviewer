@@ -1,2 +1,2 @@
-openai==1.14.1
+groq
 requests

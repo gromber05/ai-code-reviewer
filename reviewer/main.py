@@ -1,4 +1,4 @@
-from gpt import analyze_code_with_gpt
+from groq import analyze_code_with_groq
 from github_api import post_comment
 import os
 
@@ -17,7 +17,7 @@ def run_code_review():
     clean_console()
     repo_path = input("Enter the path to the repository (default: current directory): ").strip()
     if not repo_path:
-        repo_path = "."  # Usar el directorio actual si no se proporciona una ruta
+        repo_path = "." 
 
     files_to_review = get_python_files(repo_path)
 
@@ -25,8 +25,12 @@ def run_code_review():
         with open(file_path, 'r', encoding='utf-8') as file:
             code = file.read()
 
-        review = analyze_code_with_gpt(code, file_path)
-        print(f"REVIEW for {file_path}:\n{review}")
+        review = analyze_code_with_groq(code, file_path)
+        output_file = f"{file_path}_review.md"
+        with open(output_file, 'w', encoding='utf-8') as md_file:
+            md_file.write(f"# Code Review for {file_path}\n\n")
+            md_file.write(review)
+        print(f"Review for {file_path} has been saved to {output_file}")
 
         pr_number = os.getenv("PR_NUMBER")
         if pr_number:
