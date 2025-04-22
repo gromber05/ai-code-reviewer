@@ -41,7 +41,7 @@ def get_next_pr_number():
         print("Invalid repository URL format.")
         return None
 
-    github_token = os.getenv("GITHUB_TOKEN")
+    github_token = get_key("key.env", "GITHUB_TOKEN")
     if not github_token:
         print("GITHUB_TOKEN is not set in the environment variables.")
         return None
@@ -81,7 +81,7 @@ def post_comment(comment):
     repo = repo_url.split("github.com/")[-1]
     api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
 
-    github_token = get_key("project.env", "GITHUB_TOKEN")
+    github_token = get_key("key.env", "GITHUB_TOKEN")
     headers = {
         "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json"

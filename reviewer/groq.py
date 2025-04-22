@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import *
 
-GROQ_API_KEY = get_key("project.env", "GROQ_API_KEY")
+GROQ_API_KEY = get_key("key.env", "GROQ_API_KEY")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "llama-3.3-70b-versatile" 
 
