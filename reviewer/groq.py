@@ -7,6 +7,13 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "llama-3.3-70b-versatile" 
 
 def analyze_code_with_groq(code: str, filename: str) -> str:
+    """
+    Analiza el código proporcionado utilizando la API de Groq y devuelve un análisis detallado.
+
+    @param code: El código fuente a analizar como string.
+    @param filename: El nombre del archivo que contiene el código.
+    @return: Un string con el análisis generado por la API de Groq.
+    """
     if not GROQ_API_KEY:
         raise ValueError("Missing GROQ_API_KEY in environment variables.")
 

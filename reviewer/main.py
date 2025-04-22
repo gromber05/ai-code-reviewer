@@ -7,9 +7,9 @@ def get_files(repo_path, extensions=None):
     """
     Obtiene los archivos del repositorio que coincidan con las extensiones especificadas.
 
-    :param repo_path: Ruta del repositorio.
-    :param extensions: Lista de extensiones de archivo a incluir (por ejemplo, ['.py', '.js']).
-    :return: Lista de rutas de archivos.
+    @param repo_path: Ruta del repositorio.
+    @param extensions: Lista de extensiones de archivo a incluir (por ejemplo, ['.py', '.js']).
+    @return: Lista de rutas de archivos que coinciden con las extensiones.
     """
     if extensions is None:
         extensions = ['.py']
@@ -26,9 +26,15 @@ def get_files(repo_path, extensions=None):
     return files
 
 def clean_console():
+    """
+    Limpia la consola dependiendo del sistema operativo.
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def run_code_review():
+    """
+    Ejecuta el proceso de revisión de código para los archivos especificados en el repositorio.
+    """
     clean_console()
     repo_path = input("Enter the path to the repository (default: current directory): ").strip()
     if not repo_path:
