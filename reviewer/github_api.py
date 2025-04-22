@@ -1,6 +1,10 @@
 import requests
 import os
 import subprocess
+from dotenv import load_dotenv
+from dotenv import get_key
+
+load_dotenv()
 
 def get_local_repo_url():
     """
@@ -8,7 +12,6 @@ def get_local_repo_url():
     Si no hay un repositorio configurado, devuelve None.
     """
     try:
-        # Ejecuta el comando `git config --get remote.origin.url` para obtener la URL del repositorio remoto
         result = subprocess.run(
             ["git", "config", "--get", "remote.origin.url"],
             stdout=subprocess.PIPE,
@@ -18,7 +21,7 @@ def get_local_repo_url():
         )
         repo_url = result.stdout.strip()
         if repo_url.endswith(".git"):
-            repo_url = repo_url[:-4]  # Elimina la extensión `.git` si está presente
+            repo_url = repo_url[:-4]  
         return repo_url
     except subprocess.CalledProcessError:
         print("No Git repository found or no remote URL configured.")
@@ -33,7 +36,6 @@ def get_next_pr_number():
         print("No repository URL found. Skipping PR retrieval.")
         return None
 
-    # Extrae el nombre del repositorio en formato `owner/repo` desde la URL
     repo = repo_url.split("github.com/")[-1]
     if not repo:
         print("Invalid repository URL format.")
@@ -60,7 +62,6 @@ def get_next_pr_number():
         print("No open Pull Requests found.")
         return None
 
-    # Devuelve el número del primer PR abierto
     return prs[0]["number"]
 
 def post_comment(comment):
@@ -77,11 +78,10 @@ def post_comment(comment):
         print("No repository URL found. Skipping comment posting.")
         return
 
-    # Extrae el nombre del repositorio en formato `owner/repo` desde la URL
     repo = repo_url.split("github.com/")[-1]
     api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
 
-    github_token = os.getenv("GITHUB_TOKEN")
+    github_token = get_key("project.env", "GITHUB_TOKEN")
     headers = {
         "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json"
