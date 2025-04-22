@@ -1,4 +1,23 @@
-# 🤝 Contributing to AI Code Reviewer
+## ✅ Contributing
+
+We welcome contributions! Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
+
+---
+
+## 📌 Future Enhancements
+
+- Inline comments on specific lines (via GitHub API).
+- Support for multiple languages (JavaScript, TypeScript, etc.).
+- Custom rules and prompt templates.
+- Web dashboard to manage reviews.
+```
+
+---
+
+### Actualización del **`CONTRIBUTING.md`**
+
+```markdown
+# 🤝 Contributing to CodeWise Reviewer
 
 Thanks for your interest in contributing to this project! We welcome contributions of all kinds.
 
@@ -19,8 +38,8 @@ Thanks for your interest in contributing to this project! We welcome contributio
 1. **Clone the repo:**
 
 ```bash
-git clone https://github.com/your-username/ai-code-reviewer.git
-cd ai-code-reviewer
+git clone https://github.com/your-username/codewise-reviewer.git
+cd codewise-reviewer
 ```
 
 2. **Install dependencies:**
@@ -31,11 +50,9 @@ pip install -r requirements.txt
 
 3. **Create a `.env` file (optional for local testing):**
 
-```
-OPENAI_API_KEY=your_key
-GITHUB_TOKEN=your_token
-GITHUB_REPOSITORY=youruser/yourrepo
-PR_NUMBER=123
+```plaintext
+GROQ_API_KEY=your_groq_api_key
+GITHUB_TOKEN=your_github_token
 ```
 
 ---
