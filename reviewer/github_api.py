@@ -39,7 +39,7 @@ def get_next_pr_number():
         print("No repository URL found. Skipping PR retrieval.")
         return None
 
-    repo = repo_url.split("github.com/")[-1]
+    repo = repo_url.split("https://github.com/")[-1]
     if not repo:
         print("Invalid repository URL format.")
         return None
@@ -57,7 +57,7 @@ def get_next_pr_number():
 
     response = requests.get(api_url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to fetch PRs: {response.status_code} - {response.message}")
+        print(f"Failed to fetch PRs: {response.status_code} - {response.content}")
         return None
 
     prs = response.json()
