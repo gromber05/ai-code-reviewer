@@ -52,9 +52,7 @@ def run_code_review():
             md_file.write(review)
         print(f"Review for {file_path} has been saved to {output_file}")
 
-        pr_number = os.getenv("PR_NUMBER")
-        if pr_number:
-            post_comment(pr_number, review)
+        post_comment(review)
 
         del code
         del review
