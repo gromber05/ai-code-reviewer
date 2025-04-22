@@ -2,13 +2,13 @@ from groq import analyze_code_with_groq
 from github_api import post_comment
 import os
 
-def get_python_files(repo_path):
-    python_files = []
+def get_files(repo_path):
+    files = []
     for root, _, files in os.walk(repo_path):
         for file in files:
-            if file.endswith(".py"):
-                python_files.append(os.path.join(root, file))
-    return python_files
+            if file.endswith((".py", ".kt", ".java", ".js", ".ts", ".html", ".css")):
+                files.append(os.path.join(root, file))
+    return files
 
 def clean_console():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -19,14 +19,14 @@ def run_code_review():
     if not repo_path:
         repo_path = "." 
 
-    files_to_review = get_python_files(repo_path)
+    files_to_review = get_files(repo_path)
 
     for file_path in files_to_review:
         with open(file_path, 'r', encoding='utf-8') as file:
             code = file.read()
 
         review = analyze_code_with_groq(code, file_path)
-        output_file = f"{file_path}_review.md"
+        output_file = f"./output/{file}_review.md"
         with open(output_file, 'w', encoding='utf-8') as md_file:
             md_file.write(f"# Code Review for {file_path}\n\n")
             md_file.write(review)
