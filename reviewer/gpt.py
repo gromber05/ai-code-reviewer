@@ -1,7 +1,8 @@
-import openai
+from groq import Groq
 import os
+from dotenv import load_dotenv
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+load_dotenv()
 
 def analyze_code_with_gpt(code: str, filename: str) -> str:
     prompt = f"""
@@ -16,9 +17,18 @@ Code:
 {code}
 \"\"\"
 """
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.3
+    client = Groq(
+        api_key = os.getenv("GROQ_API_KEY")
+        
+    )
+
+    response = client.chat.completions.create(
+        messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+        ],
+        model="llama-3.3-70b-versatile",
     )
     return response.choices[0].message["content"]

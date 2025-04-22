@@ -25,10 +25,10 @@ Code reviews are critical for maintaining code quality but often take up a lot o
 ## 🛠️ Tech Stack
 
 - Python 3.10+
-- OpenAI GPT API
+- groq API
 - GitHub Actions
 - GitHub REST API
-- `requests`, `openai`
+- `requests`, `groq`
 
 ---
 
@@ -39,7 +39,9 @@ Code reviews are critical for maintaining code quality but often take up a lot o
 ```bash
 git clone https://github.com/your-username/ai-code-reviewer.git
 cd ai-code-reviewer
-
+```
 ### 2. Install dependencies
+
 ```bash
 pip install -r requirements.txt
+```
