@@ -47,6 +47,7 @@ def run_code_review():
 
     files_to_review = get_files(repo_path, extensions)
 
+    print("--------------------------------------------------")
     for file_path in files_to_review:
         with open(file_path, 'r', encoding='utf-8') as file:
             code = file.read()

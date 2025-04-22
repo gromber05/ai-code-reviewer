@@ -23,7 +23,8 @@ def get_local_repo_url():
         repo_url = result.stdout.strip()
         if repo_url.endswith(".git"):
             repo_url = repo_url[:-4] 
-        return repo_url
+            repo_url = repo_url.split(":")
+        return repo_url[1]
     except subprocess.CalledProcessError:
         print("No Git repository found or no remote URL configured.")
         return None
