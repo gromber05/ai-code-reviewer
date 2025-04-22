@@ -3,3 +3,4 @@ requests
 cryptography
 cryptography.fernet
 dotenv
+pytest
