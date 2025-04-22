@@ -57,7 +57,7 @@ def get_next_pr_number():
 
     response = requests.get(api_url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to fetch PRs: {response.status_code} - {response.content}")
+        print(f"Failed to fetch PRs: {response.status_code} - {response.message}")
         return None
 
     prs = response.json()
