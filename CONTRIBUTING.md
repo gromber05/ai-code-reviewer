@@ -1,22 +1,3 @@
-## ✅ Contributing
-
-We welcome contributions! Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
-
----
-
-## 📌 Future Enhancements
-
-- Inline comments on specific lines (via GitHub API).
-- Support for multiple languages (JavaScript, TypeScript, etc.).
-- Custom rules and prompt templates.
-- Web dashboard to manage reviews.
-```
-
----
-
-### Actualización del **`CONTRIBUTING.md`**
-
-```markdown
 # 🤝 Contributing to CodeWise Reviewer
 
 Thanks for your interest in contributing to this project! We welcome contributions of all kinds.
