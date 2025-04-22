@@ -4,6 +4,8 @@ import subprocess
 from dotenv import load_dotenv
 from dotenv import get_key
 
+GITHUB_TOKEN = get_key("key.env", "GITHUB_TOKEN")
+
 load_dotenv()
 
 def get_local_repo_url():
@@ -45,14 +47,13 @@ def get_next_pr_number():
         print("Invalid repository URL format.")
         return None
 
-    github_token = get_key("key.env", "GITHUB_TOKEN")
-    if not github_token:
+    if not GITHUB_TOKEN:
         print("GITHUB_TOKEN is not set in the environment variables.")
         return None
 
     api_url = f"https://api.github.com/repos/{repo}/pulls"
     headers = {
-        "Authorization": f"Bearer {github_token}",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
 
@@ -87,9 +88,8 @@ def post_comment(comment):
     repo = repo_url.split("github.com/")[-1]
     api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
 
-    github_token = get_key("key.env", "GITHUB_TOKEN")
     headers = {
-        "Authorization": f"Bearer {github_token}",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
     data = {"body": comment}

@@ -41,8 +41,18 @@ def run_code_review():
         repo_path = "."
 
     extensions = input("Enter file extensions to include (comma-separated, e.g., .py,.js,.html): ").strip()
+
+    lang = input("Select language for code review (1 for English, 2 for Spanish): ").strip()
+    if lang == "1":
+        language = False    
+    elif lang == "2":
+        language = True
+    else:
+        print("Invalid selection. Defaulting to English.")
+        language = False
+
     if not extensions:
-        extensions = ".py"  # Valor predeterminado
+        extensions = ".py"
     extensions = [ext.strip() for ext in extensions.split(",")]
 
     files_to_review = get_files(repo_path, extensions)
@@ -52,10 +62,12 @@ def run_code_review():
         with open(file_path, 'r', encoding='utf-8') as file:
             code = file.read()
 
-        review = analyze_code_with_groq(code, file_path)
+        review = analyze_code_with_groq(code, file_path, language)
+
         if os.path.exists(file_path) == False:
             os.mkdir("./output")
-        output_file = f"./output/{os.path.basename(file_path)}_review.md"
+
+        output_file = f"./output/{os.path.basename(file_path)}_{'es' if language else 'en'}_review.md"
         with open(output_file, 'w', encoding='utf-8') as md_file:
             md_file.write(f"# Code Review for {file_path}\n\n")
             md_file.write(review)

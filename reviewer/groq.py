@@ -6,7 +6,7 @@ GROQ_API_KEY = get_key("key.env", "GROQ_API_KEY")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "llama-3.3-70b-versatile" 
 
-def analyze_code_with_groq(code: str, filename: str) -> str:
+def analyze_code_with_groq(code: str, filename: str, espaniol: bool) -> str:
     """
     Analiza el código proporcionado utilizando la API de Groq y devuelve un análisis detallado.
 
@@ -22,19 +22,35 @@ def analyze_code_with_groq(code: str, filename: str) -> str:
         "Content-Type": "application/json"
     }
 
-    prompt = f"""
-You are an expert code reviewer. Please analyze the following file and provide:
-- Constructive suggestions
-- Any bugs or performance issues
-- Best practices violations
-- Style improvements
+    if espaniol:
+        prompt = f"""
+    Eres un experto en revisión de código. Por favor, analiza el siguiente archivo y proporciona:
+    - Sugerencias constructivas
+    - Errores o problemas de rendimiento
+    - Infracciones de las mejores prácticas
+    - Mejoras de estilo
 
-Filename: {filename}
-Code:
-\"\"\"
-{code}
-\"\"\"
-"""
+    Nombre de archivo: {filename}
+    Código:
+    \"\"\"
+    {code}
+    \"\"\"
+    """
+        
+    else:
+        prompt = f"""
+    You are an expert code reviewer. Please analyze the following file and provide:
+    - Constructive suggestions
+    - Any bugs or performance issues
+    - Best practices violations
+    - Style improvements
+
+    Filename: {filename}
+    Code:
+    \"\"\"
+    {code}
+    \"\"\"
+    """
 
     data = {
         "model": MODEL,
