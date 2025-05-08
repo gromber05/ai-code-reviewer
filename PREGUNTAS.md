@@ -62,7 +62,7 @@ Sobre todo los encargados de revisar código y los programadores juniors, que po
 - Podrían surgir brechas relacionadas con el acceso no autorizado a los datos analizados o con la manipulación de los resultados generados por el software. También existe el riesgo de vulnerabilidades en las dependencias externas utilizadas.
 
 ¿Qué medidas concretas propondrías para mitigarlas?  
-- Propondría implementar autenticación robusta, cifrado de datos en tránsito y en reposo, y auditorías regulares de seguridad. Además, se podrían realizar pruebas de penetración y mantener actualizadas las dependencias externas para minimizar riesgos.
+- Propondría implementar autenticación robusta, cifrado de datos en tránsito y en reposo, y auditorías regulares de seguridad. Además, se podrían realizar pruebas para intentar entrar en el sistema y mantener actualizadas las dependencias externas para minimizar riesgos.
 
 ---
 
