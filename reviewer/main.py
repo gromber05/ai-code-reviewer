@@ -1,5 +1,5 @@
-from groq import analyze_code_with_groq
-from github_api import post_comment
+from .groq import analyze_code_with_groq
+from .github_api import post_comment
 import os
 import gc
 import time
@@ -8,9 +8,12 @@ def get_files(repo_path, extensions=None):
     """
     Obtiene los archivos del repositorio que coincidan con las extensiones especificadas.
 
-    @param repo_path: Ruta del repositorio.
-    @param extensions: Lista de extensiones de archivo a incluir (por ejemplo, ['.py', '.js']).
-    @return: Lista de rutas de archivos que coinciden con las extensiones.
+    Args:
+        repo_path (str): Ruta del repositorio.
+        extensions (list, optional): Lista de extensiones de archivo a incluir (por ejemplo, ['.py', '.js']).
+
+    Returns:
+        list: Lista de rutas de archivos que coinciden con las extensiones.
     """
     if extensions is None:
         extensions = ['.py']
@@ -89,10 +92,22 @@ def run_code_review():
         print("--------------------------------------------------")
 
 def pause(timer: int = 2):
+    """
+    Pausa la ejecución del programa por una cantidad de segundos.
+
+    Args:
+        timer (int, optional): Número de segundos a pausar (por defecto 2).
+    """
     time.sleep(timer)
     
 
 def ask_to_exit() -> bool:
+    """
+    Pregunta al usuario si desea salir del programa.
+
+    Returns:
+        bool: True si el usuario desea salir, False en caso contrario.
+    """
     salida = input("Do you want to exit? (y/n)")
 
     if salida == "y":

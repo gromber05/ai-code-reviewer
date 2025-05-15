@@ -11,8 +11,9 @@ load_dotenv()
 def get_local_repo_url():
     """
     Obtiene la URL del repositorio remoto configurado en el repositorio local.
-    
-    @return: La URL del repositorio remoto como string, o None si no hay un repositorio configurado.
+
+    Returns:
+        str or None: La URL del repositorio remoto como string, o None si no hay un repositorio configurado.
     """
     try:
         result = subprocess.run(
@@ -35,7 +36,8 @@ def get_next_pr_number():
     """
     Obtiene el siguiente número de Pull Request abierto en el repositorio.
 
-    @return: El número del primer Pull Request abierto como entero, o None si no hay PRs abiertos.
+    Returns:
+        int or None: El número del primer Pull Request abierto como entero, o None si no hay PRs abiertos.
     """
     repo_url = get_local_repo_url()
     if not repo_url:
@@ -73,7 +75,8 @@ def post_comment(comment):
     """
     Publica un comentario en el Pull Request.
 
-    @param comment: El contenido del comentario a publicar.
+    Args:
+        comment (str): El contenido del comentario a publicar.
     """
     pr_number = get_next_pr_number()
     if not pr_number:

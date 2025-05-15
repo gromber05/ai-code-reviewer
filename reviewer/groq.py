@@ -10,9 +10,17 @@ def analyze_code_with_groq(code: str, filename: str, espaniol: bool) -> str:
     """
     Analiza el código proporcionado utilizando la API de Groq y devuelve un análisis detallado.
 
-    @param code: El código fuente a analizar como string.
-    @param filename: El nombre del archivo que contiene el código.
-    @return: Un string con el análisis generado por la API de Groq.
+    Args:
+        code (str): El código fuente a analizar.
+        filename (str): El nombre del archivo que contiene el código.
+        espaniol (bool): Indica si la respuesta debe estar en español.
+
+    Returns:
+        str: Un string con el análisis generado por la API de Groq.
+
+    Raises:
+        ValueError: Si falta la variable de entorno GROQ_API_KEY.
+        Exception: Si la API de Groq responde con error.
     """
     if not GROQ_API_KEY:
         raise ValueError("Missing GROQ_API_KEY in environment variables.")

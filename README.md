@@ -58,14 +58,19 @@ CodeWise Reviewer is an AI-powered tool designed to automate code reviews for yo
 
 ## 🔧 Configuration
 
-### Doxygen
-The project includes a `Doxyfile` for generating documentation. To use it:
-1. Install Doxygen.
+
+### pdoc
+The project supports generating documentation using [pdoc](https://pdoc.dev/). To use it:
+
+1. Install pdoc:
+   ```bash
+   pip install pdoc
+   ```
 2. Run:
    ```bash
-   doxygen Doxyfile
+   pdoc --output-dir docs reviewer
    ```
-3. Documentation will be generated in the `./doxygen` directory.
+3. Documentation will be generated in the `./docs` directory as HTML files.
 
 ---
 
