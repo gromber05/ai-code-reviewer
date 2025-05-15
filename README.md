@@ -36,8 +36,6 @@ CodeWise Reviewer is an AI-powered tool designed to automate code reviews for yo
      GITHUB_TOKEN=your_github_token
      ```
 
-4. Install [Doxygen](https://www.doxygen.nl/) if you want to generate documentation.
-
 ---
 
 ## 📖 Usage
